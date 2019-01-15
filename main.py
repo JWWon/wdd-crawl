@@ -47,6 +47,13 @@ for _, row in keywords.iterrows():
                 del item['title']
                 item['title'] = titles
 
+                if item['description']:
+                    descriptions = re.sub(
+                        '(<b>|</b>)', ' ', item['description'])
+                    descriptions.strip()
+                    del item['description']
+                    item['description'] = descriptions
+
             # convert items to dataframe
             df = pd.DataFrame(items)
             append_df_to_excel(
